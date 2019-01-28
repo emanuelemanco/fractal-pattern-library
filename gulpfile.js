@@ -78,7 +78,7 @@ const customTheme = mandelbrot({
     styles: [
         "default",
         "/css/theme.css",
-        "/css/style.css"
+        "/css/components.css"
     ],
     scripts: [
         "default",

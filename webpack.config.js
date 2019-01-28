@@ -4,10 +4,8 @@ const path = require('path');
 const yaml = require('js-yaml');
 const fs = require('fs');
 
-/*
-Paths
-*/
 
+// Path
 const { PATHS } = loadConfig();
 
 function loadConfig() {

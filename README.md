@@ -33,16 +33,3 @@ To copy CSS and JS assets to the relevant Umbraco folders (/css /scripts):
 note - run after previous build step
 
 `gulp copy_assets`
-
-TEST SERVER
-
-Deployed to The Teams Digitalocean 'Development' droplet.
-
-SSH user
-teamdeveloper
-7u=rEp@The5r
-
-http://preview.theteam.co.uk/nsi-corporate/
-
-theteam
-N$3reRuPruPa

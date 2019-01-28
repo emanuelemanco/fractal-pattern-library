@@ -1,0 +1,13 @@
+# Gulp will reference these paths when it copies files
+SITE:
+    title: Hugo & Cat
+PATHS:
+    build: "build"
+    components: "src/components"
+    doc: "src/docs"
+    public: "public"
+    src: "src"
+    sass:
+        - "node_modules/foundation-sites/scss"
+        - "node_modules/motion-ui/src"
+        - "src/components/**/"

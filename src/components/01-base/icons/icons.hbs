@@ -1,0 +1,12 @@
+<div class="iconlist">
+    {{#each icons}}
+    <div class="iconlist_item">
+
+        <svg class="icon {{../icon.class}}" aria-hidden="true">
+            <use xlink:href="{{path '/images/icons/symbol-defs.svg#icon-{{ this.id }}'}}"></use>
+        </svg>
+
+        <span class="iconlist_name">{{ this.id }}</span>
+    </div>
+    {{/each}}
+</div>

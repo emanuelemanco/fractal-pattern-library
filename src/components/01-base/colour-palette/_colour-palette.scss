@@ -1,0 +1,29 @@
+.palette_item {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.palette_swatch {
+    height: 50px;
+}
+
+.palette_label {
+    background-color: #efefef;
+    padding: 0.5rem;;
+}
+
+.palette_label__name,
+.palette_label__hex  {
+    display: block;
+}
+
+.palette_label__name {
+    border-bottom: 1px dashed rgba(#444, 0.2);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+    text-transform: uppercase;
+}
+
+.palette_label__hex {
+
+}

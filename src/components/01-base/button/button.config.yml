@@ -1,0 +1,17 @@
+title: Buttons
+status: wip
+context:
+    label: Button
+# variants:
+# -   name: "tiny"
+#     context:
+#         class: "tiny"
+# -   name: "small"
+#     context:
+#         class: "small"
+# -   name: "large"
+#     context:
+#         class: "large"
+# -   name: "expanded"
+#     context:
+#         class: "expanded"

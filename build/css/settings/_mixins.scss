@@ -1,0 +1,7 @@
+@mixin linkEvents {
+
+    &:focus,
+    &:hover {
+        @content;
+    }
+}

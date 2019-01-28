@@ -1,0 +1,29 @@
+title: Navigation
+status: wip
+context:
+    title: "Navigation"
+    # menu:
+    #     items:
+    #         - label: About NS&I
+    #           link: /components/preview/about
+
+    #         - label: Governance
+    #           link: /components/preview/governance
+    #           items:
+    #             - label: How we operate
+    #               link: /components/preview/governance
+
+    #             - label: Who we are
+    #               link: /components/preview/governance--who
+
+    #             - label: Strategy
+    #               link: /components/preview/governance--strategy
+
+    #             - label: Corporate & social responsibility
+    #               link: /components/preview/governance--csr
+
+    #             - label: Acts & Regulations
+    #               link: /components/preview/governance--regulations
+
+    #             - label: Procurement (not mvp)
+    #               link: /components/preview/governance--procurement

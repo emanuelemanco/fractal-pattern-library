@@ -1,0 +1,10 @@
+title: list
+status: wip
+context:
+    list:
+        items:
+            - Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            - Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            - Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            - Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            - Lorem ipsum dolor sit amet, consectetur adipisicing elit

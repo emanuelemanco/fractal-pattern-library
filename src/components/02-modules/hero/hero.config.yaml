@@ -1,0 +1,9 @@
+title: Hero
+status: wip
+context:
+    title: Hero
+
+# variants:
+# -   name: variant-name
+#     context:
+#         title: hero variant

@@ -1,0 +1,54 @@
+title: Colour Palette
+status: wip
+context:
+    colours:
+        - label: blue
+          color: '#0073af'
+        - label: deep_blue
+          color: '#01507A'
+        - label: sky_blue
+          color: '#00A0D7'
+        - label: deep_skyblue
+          color: '#0078A1'
+        - label: grey
+          color: '#7D7D7D'
+        - label: deep_grey
+          color: '#575757'
+        - label: dark_grey
+          color: '#444'
+        - label: green
+          color: '#73A500'
+        - label: deep_green
+          color: '#567C00'
+        - label: duckegg
+          color: '#008C8C'
+        - label: deep_duckegg
+          color: '#006262'
+        - label: orange
+          color: '#F06E0F'
+        - label: deep_orange
+          color: '#D85618'
+        - label: yellow
+          color: '#FAB914'
+        - label: deep_yellow
+          color: '#F68C11'
+        - label: purple
+          color: '#502387'
+        - label: deep_purple
+          color: '#301551'
+        - label: pink
+          color: '#B40087'
+        - label: deep_pink
+          color: '#870065'
+        - label: light_grey
+          color: '#F8F8F8'
+        - label: forestgreen
+          color: '#0f6737'
+        - label: deep_forestgreen
+          color: '#00421e'
+        - label: burgundy
+          color: '#ae123d'
+        - label: deep_burgundy
+          color: '#780524'
+        - label: red
+          color: '#ff1515'

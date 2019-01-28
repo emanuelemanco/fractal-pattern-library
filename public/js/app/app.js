@@ -1,0 +1,1 @@
+import '../../../src/components/02-modules/cookie/cookie.js';

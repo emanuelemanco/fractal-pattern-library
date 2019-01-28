@@ -1,0 +1,22 @@
+<div class="grid-container">
+    <div class="grid-x grid-margin-x">
+    {{#each colours}}
+
+        <div class="cell small-6 medium-3 large-2">
+
+            <div class="palette_item">
+
+                <div class="palette_swatch" style="background-color:{{this.color}}">
+                </div>
+                <div class="palette_label">
+                    <span class="palette_label__name">{{create_label this.label}}</span>
+                    <span class="palette_label__hex">{{this.color}}</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    {{/each}}
+    </div>
+</div>

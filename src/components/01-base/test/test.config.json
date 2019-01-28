@@ -1,0 +1,15 @@
+{
+    "preview": "@preview",
+    "label": "test label agaga",
+    "context": {
+        "content" : "Lorem ipsum dolor sit amet",
+        "users": [{
+            "name" : "Mickey Mouse",
+            "email" : "mickey@mouse.com"
+        },{
+            "name" : "Daffy Duck",
+            "email" : "daffy@duck.com"
+        }
+        ]
+    }
+}

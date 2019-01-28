@@ -1,0 +1,11 @@
+.skiplink {
+
+    &:active,
+    &:focus {
+        background: map-get($brand-palette, orange);
+        color: #fff;
+        padding: 1rem 2rem;
+        position: absolute!important;
+        z-index: 150;
+    }
+}

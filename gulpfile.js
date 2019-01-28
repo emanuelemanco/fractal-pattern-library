@@ -5,8 +5,12 @@ const gulpSequence = require('gulp-sequence');
 const sass = require('gulp-sass');
 const jshint = require('gulp-jshint');
 const concat = require('gulp-concat');
+const rename = require('gulp-rename');
 const del = require('del');
-const uglify = require('gulp-uglify');
+const uglifyes = require('uglify-es');
+const composer = require('gulp-uglify/composer');
+const uglify = composer(uglifyes, console);
+const pump = require('pump');
 const autoprefixer = require('gulp-autoprefixer');
 const fractal = require('@frctl/fractal').create();
 const util = require('gulp-util');
@@ -22,10 +26,9 @@ const webpackConfig = require('./webpack.config');
 
 const PRODUCTION = !!util.env.production;
 
-/*
-Paths
-*/
 
+
+// Paths Setup
 const { PATHS, SITE } = loadConfig();
 
 function loadConfig() {
@@ -33,10 +36,8 @@ function loadConfig() {
     return yaml.load(ymlFile);
 }
 
-/*
-Fractal configuration
-*/
 
+// Fractal Setup 
 fractal.set('project.title', SITE.title);
 fractal.docs.set('path', PATHS.doc);
 fractal.web.set('builder.dest', PATHS.build);
@@ -62,7 +63,9 @@ fractal.components.set('statuses', {
     }
 });
 
-//custom ui
+
+
+// Custom Fractal Mandelbrot UI
 const mandelbrot = require('@frctl/mandelbrot');
 const customTheme = mandelbrot({
     lang: "en-gb",
@@ -102,17 +105,14 @@ gulp.task('fractal:build', function(){
     return builder.build().then(() => {
         logger.success('Fractal build completed!');
     });
-    done();
 });
 
-/*
-SASS
-*/
 
+// SASS
 gulp.task('sass', done => {
-    done();
+    
 
-    return gulp.src(`${PATHS.public}/css/**/*.scss`)
+    gulp.src(`${PATHS.public}/css/**/*.scss`)
         .pipe(sass({
             outputStyle: PRODUCTION ? 'compressed' : 'expanded',
             includePaths: PATHS.sass
@@ -123,11 +123,13 @@ gulp.task('sass', done => {
         }))
         .pipe(gulp.dest(`${PATHS.public}/css/`));
 
+    done();
+
 });
 
-/*
-JS
-*/
+
+
+// Webpack Environment Flag
 let webpackConfigSetting = webpackConfig.dev;
 gulp.task('webpack', done => {
 
@@ -144,10 +146,19 @@ gulp.task('webpack', done => {
     done();
 });
 
-/*
-Watch
-*/
 
+// Creates a minified version of each module for production environment
+gulp.task('uglify', done => {
+    gulp.src(`${PATHS.src}/components/**/*.js`) // path to your file
+    .pipe(uglify())
+    .on('error', function (err) { util.log(util.colors.red('[Error]'), err.toString()); })  // show errors
+    .pipe(gulp.dest(`${PATHS.build}/js/components`));
+
+    done();
+});
+
+
+// Watch task for dev environment
 gulp.task('watch', done => {
     gulp.watch(`${PATHS.components}/**/*.scss`, gulp.series('sass'));
     gulp.watch(`${PATHS.public}/css/**/*.scss`, gulp.series('sass'));
@@ -158,18 +169,15 @@ gulp.task('watch', done => {
     done();
 });
 
-/*
-Clean
-*/
 
+// Clean
 gulp.task('build:clean', done => {
+    del(['build']);
+    
     done();
-	return del(['build']);
 });
 
-/*
-Default tasks
-*/
 
+// Default tasks
 gulp.task('default', gulp.parallel('webpack', 'sass', 'watch', 'fractal:start'));
-gulp.task('build', gulp.series('build:clean', ['webpack', 'sass'], 'fractal:build'));
+gulp.task('build', gulp.series('build:clean', 'webpack', 'sass', 'fractal:build', 'uglify'));

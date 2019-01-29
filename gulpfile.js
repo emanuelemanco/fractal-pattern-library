@@ -6,6 +6,7 @@ const sass = require('gulp-sass');
 const jshint = require('gulp-jshint');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
+const flatten = require('gulp-flatten');
 const del = require('del');
 const uglifyes = require('uglify-es');
 const composer = require('gulp-uglify/composer');
@@ -77,13 +78,13 @@ const customTheme = mandelbrot({
     panels: ["html", "view", "context", "resources", "info", "notes"],
     styles: [
         "default",
-        "/css/theme.css",
+        "/css/fractal-theme.css",
         "/css/components.css"
-    ],
+    ]/*,
     scripts: [
         "default",
         "/js/theme.js"
-    ]
+    ]*/
 });
 fractal.web.theme(customTheme);
 
@@ -121,6 +122,7 @@ gulp.task('sass', done => {
             browsers: ['last 2 versions'],
             cascade: false
         }))
+        .pipe(rename({ suffix: PRODUCTION ? '.min' : '' }))
         .pipe(gulp.dest(`${PATHS.public}/css/`));
 
     done();
@@ -148,11 +150,13 @@ gulp.task('webpack', done => {
 
 
 // Creates a minified version of each module for production environment
-gulp.task('uglify', done => {
+gulp.task('modules', done => {
     gulp.src(`${PATHS.src}/components/**/*.js`) // path to your file
     .pipe(uglify())
     .on('error', function (err) { util.log(util.colors.red('[Error]'), err.toString()); })  // show errors
-    .pipe(gulp.dest(`${PATHS.build}/js/components`));
+    .pipe(flatten())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(`${PATHS.build}/js/modules`));
 
     done();
 });
@@ -180,4 +184,4 @@ gulp.task('build:clean', done => {
 
 // Default tasks
 gulp.task('default', gulp.parallel('webpack', 'sass', 'watch', 'fractal:start'));
-gulp.task('build', gulp.series('build:clean', 'webpack', 'sass', 'fractal:build', 'uglify'));
+gulp.task('build', gulp.series('build:clean', 'webpack', 'sass', 'fractal:build'));

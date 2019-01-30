@@ -1,4 +1,5 @@
 module.exports = {
+    // watch: true,
     output: {
       filename: '[name].es5.js',
     },
@@ -23,6 +24,10 @@ module.exports = {
             ],
           }
         },
+        {
+            test: /\.scss$/,
+            use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+        }
       ],
     },
     optimization: {

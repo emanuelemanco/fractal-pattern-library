@@ -1,21 +1,23 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <link media="all" rel="stylesheet" href="{{ path '/css/components.css' }}">
+    <link media="all" rel="stylesheet" href="../../css/components.css">
     
     <title>Preview Layout</title>
 </head>
 <body>
 
 
-{{{ yield }}}
+Hero
 
 <!-- Browsers with ES module support load this file. -->
-<script type="module" src="{{ path '/js/app.mjs' }}"></script>
+<script type="module" src="../../js/app.mjs"></script>
 
 <!-- Older browsers load this file (and module-supporting browsers know *not* to load this file). -->
-<script nomodule src="{{ path '/js/app.es5.js' }}"></script>
+<script nomodule src="../../js/app.es5.js"></script>
 
 </body>
 </html>

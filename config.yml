@@ -2,7 +2,7 @@
 SITE:
     title: Hugo & Cat
 PATHS:
-    build: "build"
+    build: "dist"
     components: "src/components"
     doc: "src/docs"
     public: "public"

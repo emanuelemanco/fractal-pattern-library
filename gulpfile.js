@@ -25,9 +25,10 @@ const webpack = require('webpack');
 const named = require('vinyl-named');
 const webpackConfig = require('./webpack.config');
 
-const PRODUCTION = !!util.env.production;
+const modernConfig = require('./webpack.modern.js');
+const legacyConfig = require('./webpack.legacy.js');
 
-
+let PRODUCTION = !!util.env.production;
 
 // Paths Setup
 const { PATHS, SITE } = loadConfig();
@@ -88,7 +89,7 @@ const customTheme = mandelbrot({
 });
 fractal.web.theme(customTheme);
 
-gulp.task('fractal:start', function(){
+gulp.task('fractal:start', ()=> {
     const server = fractal.web.server({
         sync: true
     });
@@ -96,10 +97,9 @@ gulp.task('fractal:start', function(){
     return server.start().then(() => {
         logger.success(`Fractal server is now running at ${server.url}`);
     });
-    done();
 });
 
-gulp.task('fractal:build', function(){
+gulp.task('fractal:build', ()=> {
     const builder = fractal.web.builder();
     builder.on('progress', (completed, total) => logger.update(`Exported ${completed} of ${total} items`, 'info'));
     builder.on('error', err => logger.error(err.message));
@@ -111,7 +111,6 @@ gulp.task('fractal:build', function(){
 
 // SASS
 gulp.task('sass', done => {
-    
 
     gulp.src(`${PATHS.public}/css/**/*.scss`)
         .pipe(sass({
@@ -130,27 +129,50 @@ gulp.task('sass', done => {
 });
 
 
-
 // Webpack Environment Flag
 let webpackConfigSetting = webpackConfig.dev;
-gulp.task('webpack', done => {
+gulp.task('webpack', (done) => {
 
-    if (PRODUCTION) {
-        webpackConfigSetting = webpackConfig.prod;
-    }
+    if (PRODUCTION) { webpackConfigSetting = webpackConfig.prod; }
 
     webpack(webpackConfigSetting, function (err, stats){
-        if (err) {
-            console.log(err);
-        }
+        if (err) { console.log(err);}
     });
 
     done();
 });
 
 
+// Modern ES6 Bundle
+const wpModernConfig = Object.assign({mode: PRODUCTION ? 'production' : 'development'}, modernConfig);
+
+gulp.task('modern', (done) => {
+    gulp.src(['./src/js/app.mjs'])
+      .pipe(named())
+      .pipe(webpackStream(wpModernConfig), webpack)
+      .pipe(PRODUCTION ? gulp.dest(`${PATHS.build}/js`) : gulp.dest(`${PATHS.public}/js`));
+
+    done();
+});
+
+// Legacy ES5 Bundle with polyfills and transpilers
+const wpLegacyConfig = Object.assign({mode: PRODUCTION ? 'production' : 'development'}, legacyConfig);
+
+gulp.task('legacy', (done) => {
+    gulp.src('./src/js/app.mjs')
+      .pipe(named())
+      .pipe(webpackStream(wpLegacyConfig), webpack)
+      .pipe(PRODUCTION ? gulp.dest(`${PATHS.build}/js`) : gulp.dest(`${PATHS.public}/js`));
+
+    done();
+});
+
+// group both bundles into one
+gulp.task('bundles', gulp.series('modern', 'legacy') );
+
+
 // Creates a minified version of each module for production environment
-gulp.task('modules', done => {
+gulp.task('modules', (done) => {
     gulp.src(`${PATHS.src}/components/**/*.js`) // path to your file
     .pipe(uglify())
     .on('error', function (err) { util.log(util.colors.red('[Error]'), err.toString()); })  // show errors
@@ -162,11 +184,13 @@ gulp.task('modules', done => {
 });
 
 
+
+
 // Watch task for dev environment
-gulp.task('watch', done => {
+gulp.task('watch', (done) => {
     gulp.watch(`${PATHS.components}/**/*.scss`, gulp.series('sass'));
     gulp.watch(`${PATHS.public}/css/**/*.scss`, gulp.series('sass'));
-    gulp.watch(`${PATHS.components}/**/*.js`, gulp.series('webpack'));
+    gulp.watch(`${PATHS.components}/**/*.js`, gulp.series('webpack', 'modern'));
     gulp.watch(`${PATHS.public}/js/app/*.js`, gulp.series('webpack'));
     gulp.watch(`${PATHS.public}/js/vendor/*.js`, gulp.series('webpack'));
 
@@ -175,13 +199,14 @@ gulp.task('watch', done => {
 
 
 // Clean
-gulp.task('build:clean', done => {
+gulp.task('build:clean', (done) => {
+    PRODUCTION = true;
     del(['build']);
-    
+
     done();
 });
 
 
 // Default tasks
-gulp.task('default', gulp.parallel('webpack', 'sass', 'watch', 'fractal:start'));
-gulp.task('build', gulp.series('build:clean', 'webpack', 'sass', 'fractal:build'));
+gulp.task('default', gulp.parallel('webpack', 'modern', 'sass', 'watch', 'fractal:start'));
+gulp.task('build', gulp.series('build:clean', 'webpack', 'bundles', 'sass', 'fractal:build'));

@@ -1,12 +1,13 @@
 module.exports = {
     // watch: true,
     output: {
-      filename: '[name].es5.js',
+      filename: 'app.es5.js',
+      chunkFilename: '[name].js',
     },
     module: {
       rules: [
         {
-          test: /\.m?js$/,
+          test: /\.js$/,
           loader: 'babel-loader',
           options: {
             presets: [
@@ -29,10 +30,5 @@ module.exports = {
             use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
         }
       ],
-    },
-    optimization: {
-      splitChunks: {
-      chunks: 'all'
-      }
     },
 };

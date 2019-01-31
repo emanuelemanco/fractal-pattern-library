@@ -159,10 +159,10 @@ gulp.task('webpack', done => {
 // Modern ES6 Bundle
 const wpModernConfig = Object.assign({
     mode: PRODUCTION ? 'production' : 'development',
-    entry: {
+    /*entry: {
         app: './src/js/app.js',
         modules: './src/js/modules.js', 
-    }
+    }*/
 }, modernConfig);
 
 gulp.task('modern', done => {
@@ -177,10 +177,11 @@ gulp.task('modern', done => {
 // Legacy ES5 Bundle with polyfills and transpilers
 const wpLegacyConfig = Object.assign({
     mode: PRODUCTION ? 'production' : 'development',
-    entry: {
-        app: './src/js/app.js',
-        modules: './src/js/modules.js', 
-    }
+    entry: [
+        "core-js/modules/es6.promise",
+        "core-js/modules/es6.array.iterator",
+        "./src/js/app.js",
+    ]
 }, legacyConfig);
 
 gulp.task('legacy', done => {

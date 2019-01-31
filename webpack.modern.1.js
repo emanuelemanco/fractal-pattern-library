@@ -1,10 +1,7 @@
 module.exports = {
     //watch: true,
     output: {
-      publicPath: '/js/',
-      pathinfo: true,
       filename: '[name].js',
-      chunkFilename: '[name].[chunkhash].js',
     },
     module: {
       rules: [
@@ -28,9 +25,9 @@ module.exports = {
       ],
     },
     optimization: {
-        splitChunks: {
-            chunks: 'all',
-            automaticNameDelimiter: '.'
+         splitChunks: {
+         chunks: 'all',
+         automaticNameDelimiter: '.'
         }
-    }
+    },
   };

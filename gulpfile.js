@@ -20,7 +20,7 @@ const hbshelpers = require('./helpers');
 const hbs = require('@frctl/handlebars')({helpers: hbshelpers});
 const yaml = require('js-yaml');
 const fs = require('fs');
-const webpackStream = require('webpack-stream');
+const stream = require('webpack-stream');
 const webpack = require('webpack');
 const named = require('vinyl-named');
 const webpackConfig = require('./webpack.config');
@@ -156,44 +156,26 @@ gulp.task('webpack', done => {
 });
 
 
-// Modern ES6 Bundle
-const wpModernConfig = Object.assign({
-    mode: PRODUCTION ? 'production' : 'development',
-    /*entry: {
-        app: './src/js/app.js',
-        modules: './src/js/modules.js', 
-    }*/
-}, modernConfig);
 
+// Modern ES6 Bundle
 gulp.task('modern', done => {
     gulp.src(['./src/js/app.js'])
       .pipe(named())
-      .pipe(webpackStream(wpModernConfig), webpack)
-      .pipe(PRODUCTION ? gulp.dest(`${PATHS.build}/js`) : gulp.dest(`${PATHS.public}/js`));
-
-    done();
+      .pipe(stream( Object.assign({ mode: PRODUCTION ? 'production' : 'development',}, modernConfig) ), webpack)
+      .pipe(PRODUCTION ? gulp.dest(`${PATHS.build}/js`) : gulp.dest(`${PATHS.public}/js`))
+      .on('end', () => { done(); });
 });
 
 // Legacy ES5 Bundle with polyfills and transpilers
-const wpLegacyConfig = Object.assign({
-    mode: PRODUCTION ? 'production' : 'development',
-    entry: [
-        "core-js/modules/es6.promise",
-        "core-js/modules/es6.array.iterator",
-        "./src/js/app.js",
-    ]
-}, legacyConfig);
-
 gulp.task('legacy', done => {
     gulp.src('./src/js/app.js')
       .pipe(named())
-      .pipe(webpackStream(wpLegacyConfig), webpack)
-      .pipe(PRODUCTION ? gulp.dest(`${PATHS.build}/js`) : gulp.dest(`${PATHS.public}/js`));
-
-    done();
+      .pipe(stream( Object.assign({mode: PRODUCTION ? 'production' : 'development'}, legacyConfig) ), webpack)
+      .pipe(PRODUCTION ? gulp.dest(`${PATHS.build}/js`) : gulp.dest(`${PATHS.public}/js`))
+      .on('end', () => { done(); });
 });
 
-// group both bundles into one
+// group both bundles into one task sequentially
 gulp.task('bundles', gulp.series('modern', 'legacy') );
 
 
@@ -218,8 +200,6 @@ gulp.task('watch', done => {
     gulp.watch(`${PATHS.components}/**/*.scss`, gulp.series('sass'));
     gulp.watch(`${PATHS.public}/css/**/*.scss`, gulp.series('sass'));
     gulp.watch(`${PATHS.components}/**/*.js`, gulp.series('webpack'));
-
-
     gulp.watch(`${PATHS.src}/js/**/*.mjs`, gulp.series('modern'));  // compile main js
 
     //gulp.watch(`${PATHS.public}/js/app/*.js`, gulp.series('webpack'));

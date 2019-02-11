@@ -1,8 +1,10 @@
 module.exports = {
     // watch: true,
     output: {
-      filename: 'app.es5.js',
-      chunkFilename: '[name].js',
+      publicPath: '/js/',
+      pathinfo: true,
+      filename: '[name].es5.js',
+      chunkFilename: '[name].[chunkhash].es5.js',
     },
     module: {
       rules: [
@@ -31,4 +33,10 @@ module.exports = {
         }
       ],
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            automaticNameDelimiter: '.'
+        }
+    }
 };

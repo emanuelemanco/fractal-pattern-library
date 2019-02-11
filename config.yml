@@ -1,6 +1,6 @@
 # Gulp will reference these paths when it copies files
 SITE:
-    title: Hugo & Cat
+    title: Hugo & Cat Pattern Library
 PATHS:
     build: "dist"
     components: "src/components"

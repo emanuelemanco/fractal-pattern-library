@@ -2,6 +2,7 @@
 @import 'settings/variables';
 @import 'settings/mixins';
 @import 'settings/settings';
+@import 'settings/preview';
 
-// third party
+// import components to be rendered into preview
 @import '../../src/components/imports';

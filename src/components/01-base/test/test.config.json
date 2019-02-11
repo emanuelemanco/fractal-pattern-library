@@ -1,6 +1,6 @@
 {
     "preview": "@preview",
-    "label": "test label agaga",
+    "label": "Test Title for Component",
     "context": {
         "content" : "Lorem ipsum dolor sit amet",
         "users": [{

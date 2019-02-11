@@ -1,0 +1,75 @@
+.component-group {
+    margin-bottom: 90px;
+}
+
+.code-group {
+    display: flex;
+    flex-direction: row;
+}
+
+.code-pill {
+    border-radius: 10px;
+    padding: 0 30px;
+    background-color: #272a2f;
+    color: #fff;
+    margin: 15px;
+    width: calc(50% - 90px);
+    display: flex;
+    flex-direction: column;
+
+    h6 {
+        margin: 0;
+        padding: 0;
+        margin-top: 2em;
+        display: inline-block;
+        text-transform: uppercase;
+        font: normal 0.75rem/1.66667 "Open Sans", Helvetica, Arial, sans-serif;
+        color: #bec7d5;
+    }
+}
+
+pre {
+    margin: 0;
+
+    code {
+        padding: 20px;
+        border-radius: 10px;
+    }
+}
+
+.code-buttons {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+    right: 15px;
+
+    .btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        cursor: pointer;
+
+        svg {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    .toggle-code {
+        background: #000;
+        border-radius: 100%;
+        text-align: center;
+        display: flex;
+        align-content: center;
+        align-self: center;
+        padding: 10px;
+        transform: scale(0.58);
+
+        svg {
+            fill: #fff;
+        }
+    }
+}

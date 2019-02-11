@@ -1,0 +1,160 @@
+.component-group {
+  margin-bottom: 90px;
+}
+
+.code-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.code-pill {
+  border-radius: 10px;
+  padding: 0 30px;
+  background-color: #272a2f;
+  color: #fff;
+  margin: 15px;
+  width: calc(50% - 90px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.code-pill h6 {
+  margin: 0;
+  padding: 0;
+  margin-top: 2em;
+  display: inline-block;
+  text-transform: uppercase;
+  font: normal 0.75rem/1.66667 "Open Sans", Helvetica, Arial, sans-serif;
+  color: #bec7d5;
+}
+
+pre {
+  margin: 0;
+}
+
+pre code {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.code-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: auto;
+  justify-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: absolute;
+  right: 15px;
+}
+
+.code-buttons .btn {
+  width: 40px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+.code-buttons .btn svg {
+  width: 40px;
+  height: 40px;
+}
+
+.code-buttons .toggle-code {
+  background: #000;
+  border-radius: 100%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  padding: 10px;
+  -webkit-transform: scale(0.58);
+  transform: scale(0.58);
+}
+
+.code-buttons .toggle-code svg {
+  fill: #fff;
+}
+
+.icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  vertical-align: middle;
+}
+
+.icon_label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.skiplink:active, .skiplink:focus {
+  background: #f06e0f;
+  color: #fff;
+  padding: 1rem 2rem;
+  position: absolute !important;
+  z-index: 150;
+}
+
+/*
+Button default
+*/
+.button {
+  display: block;
+  background: cyan;
+}
+
+.palette_item {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.palette_swatch {
+  height: 50px;
+}
+
+.palette_label {
+  background-color: #efefef;
+  padding: 0.5rem;
+}
+
+.palette_label__name,
+.palette_label__hex {
+  display: block;
+}
+
+.palette_label__name {
+  border-bottom: 1px dashed rgba(68, 68, 68, 0.2);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.cookie {
+  display: block;
+}

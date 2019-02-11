@@ -51,17 +51,22 @@ fractal.components.set('statuses', {
     wip: {
         label: "WIP",
         description: "Work in progress. Implement with caution.",
-        color: "#FF9233"
+        color: "#4DBCE9"
     },
     ready: {
         label: "Ready",
         description: "Ready to implement.",
-        color: "#29CC29"
+        color: "#84DAA1"
     },
     review: {
         label: "For Review",
         description: "Ready for design review",
-        color: "#B40087"
+        color: "#F8A744"
+    },
+    hold: {
+        label: "On Hold",
+        description: "Component is on hold. Likely waiting for client sign-off before proceeding with dev.",
+        color: '#EF6B93'
     }
 });
 
@@ -73,18 +78,19 @@ const customTheme = mandelbrot({
     lang: "en-gb",
     rtl: false,
     format: "json",
-    favicon: 'favicon.ico',
+    favicon: './favicon.ico',
     skin: "default",
     nav: ["docs", "components"],
-    panels: ["html", "view", "context", "resources", "info", "notes"],
+    panels: [],
+    //panels: ["html", "view", "context", "resources", "info", "notes"],
     styles: [
         "default",
         "/css/fractal-theme.css",
-        "/css/components.css"
-    ]/*,
-    scripts: [
+        "/css/styles.css"
+    ],
+    /*scripts: [
         "default",
-        "/js/theme.js"
+        "/js/fractal-theme.js"
     ]*/
 });
 fractal.web.theme(customTheme);
@@ -94,8 +100,8 @@ gulp.task('fractal:start', done=> {
         sync: true,
         syncOptions: {
             open: true,
-            browser: ['Chrome'],
-            notify: true
+            // browser: ['chrome.exe'],
+            // notify: true
         }
     });
     server.on('error', err => logger.error(err.message));

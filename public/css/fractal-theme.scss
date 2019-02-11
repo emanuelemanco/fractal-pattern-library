@@ -1,119 +1,124 @@
 @import 'settings/variables';
 
+$primaryColor: #fff;
+$secondaryColor: #333;
+
+
 .Header {
-    background-color: map-get($brand-palette, blue);
-    box-shadow: none;
-    color: white;
+  color: $secondaryColor;
+  background: $primaryColor;
+  box-shadow: 0 0 2px 0 rgba(0,0,0,.05), 0 0 40px 0 rgba(0,0,0,.05);
+
+  svg {
+    fill: $secondaryColor;
+  }
 }
+
+[dir="ltr"] .Header-button {
+  border-right: 1px solid rgba(0,0,0,0.2) !important;
+}
+
+[dir="rtl"] .Header-button {
+  border-left: 1px solid rgba(0,0,0,0.2) !important;
+}
+
+.Frame-panel--sidebar {
+  background-color: $secondaryColor;
+  min-width: 300px;
+}
+
+
+.Navigation {
+
+  &:before {
+    content: '';
+    display: block;
+    background-image: url('../img/logo.svg');
+    background-position: left center;
+    background-size: 200px;
+    background-repeat: no-repeat;
+    width: calc(100% - 35px);
+    height: 100px;  // adjust this value depending on the logo you're using
+    margin: 0 auto;
+  }
+
+  a, .Tree-collectionLabel {
+    color: rgba(255,255,255,.7);
+    transition: all 0.3s ease-out;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+}
+
+.Tree-title {
+  color: darken($primaryColor, 50%);
+}
+
+.is-closed {
+
+  .Tree-collectionLabel {
+    span {
+      &:before {
+        display: none;
+      }
+      &:after {
+        transform: rotate(0deg);
+       }
+    }
+  }
+  
+  
+}
+.Tree-collectionLabel {
+  span {
+    &:before {
+      display: none;
+    }
+    &:after {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 100%;
+      color: #fff;
+      background-image: url(../img/arrow.svg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 10px 10px;
+      position: absolute;
+      right: 10px;
+      top: 0;
+      transition: transform 0.2s ease-out;
+      transform: rotate(90deg);
+     }
+  }
+}
+
+// Customisations to hide the Code Snippets below Preview
+
+.Pen-handle {
+  display: none !important; // use only when the panel should be hidden underneath
+}
+
+.Pen-preview {
+  height: 100vh !important; // use only when the panel should be hidden underneath
+}
+
+
 
 .Status-dot {
-    border: 3px solid transparent;
-    margin: 3px;
-    width: initial;
-    height: initial;
+  position: absolute;
+  right: 12px;
+  height: 6px;
+  width: 6px;
+  border: 3px solid transparent;
+  background-color: transparent;
 }
 
-a {
-
-    &,
-    &:hover {
-        color: map-get($brand-palette, blue);
-    }
+.Document-title {
+  margin: 15px 0;
+  font-size: 2em;
+  font-weight: 100;
 }
-
-.Browser-tab.is-active a {
-    border-bottom-color: map-get($brand-palette, blue);
-}
-
-
-
-
-.Browser-panel, .Browser-panel .Code, .Browser-panel .Code pre, .Meta-key, .Browser-isEmptyNote {
-    background: #23241f;
-    color: #f8f8f2;
-}
-
-/*
-
-Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
-
-*/
-
-.hljs {
-    display: block;
-    overflow-x: auto;
-    padding: 0.5em;
-    background: #23241f;
-  }
-  
-  .hljs,
-  .hljs-tag,
-  .hljs-subst {
-    color: #f8f8f2;
-  }
-  
-  .hljs-strong,
-  .hljs-emphasis {
-    color: #a8a8a2;
-  }
-  
-  .hljs-bullet,
-  .hljs-quote,
-  .hljs-number,
-  .hljs-regexp,
-  .hljs-literal,
-  .hljs-link {
-    color: #ae81ff;
-  }
-  
-  .hljs-code,
-  .hljs-title,
-  .hljs-section,
-  .hljs-selector-class {
-    color: #a6e22e;
-  }
-  
-  .hljs-strong {
-    font-weight: bold;
-  }
-  
-  .hljs-emphasis {
-    font-style: italic;
-  }
-  
-  .hljs-keyword,
-  .hljs-selector-tag,
-  .hljs-name,
-  .hljs-attr {
-    color: #f92672;
-  }
-  
-  .hljs-symbol,
-  .hljs-attribute {
-    color: #66d9ef;
-  }
-  
-  .hljs-params,
-  .hljs-class .hljs-title {
-    color: #f8f8f2;
-  }
-  
-  .hljs-string,
-  .hljs-type,
-  .hljs-built_in,
-  .hljs-builtin-name,
-  .hljs-selector-id,
-  .hljs-selector-attr,
-  .hljs-selector-pseudo,
-  .hljs-addition,
-  .hljs-variable,
-  .hljs-template-variable {
-    color: #e6db74;
-  }
-  
-  .hljs-comment,
-  .hljs-deletion,
-  .hljs-meta {
-    color: #75715e;
-  }
-  

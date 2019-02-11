@@ -1,4 +1,4 @@
-//import {TweenLite} from 'gsap/TweenLite';
+import {TweenLite} from 'gsap/TweenLite';
 //import {TimelineLite} from 'gsap/TimelineLite';
 
 const hello = () => {

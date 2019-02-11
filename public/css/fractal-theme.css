@@ -1,109 +1,107 @@
 .Header {
-  background-color: #0073af;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  color: white;
+  color: #333;
+  background: #fff;
+  -webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.05), 0 0 40px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.05), 0 0 40px 0 rgba(0, 0, 0, 0.05);
+}
+
+.Header svg {
+  fill: #333;
+}
+
+[dir="ltr"] .Header-button {
+  border-right: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+[dir="rtl"] .Header-button {
+  border-left: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.Frame-panel--sidebar {
+  background-color: #333;
+  min-width: 300px;
+}
+
+.Navigation:before {
+  content: '';
+  display: block;
+  background-image: url("../img/logo.svg");
+  background-position: left center;
+  background-size: 200px;
+  background-repeat: no-repeat;
+  width: calc(100% - 35px);
+  height: 100px;
+  margin: 0 auto;
+}
+
+.Navigation a, .Navigation .Tree-collectionLabel {
+  color: rgba(255, 255, 255, 0.7);
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.Navigation a:hover, .Navigation .Tree-collectionLabel:hover {
+  color: #fff;
+}
+
+.Tree-title {
+  color: gray;
+}
+
+.is-closed .Tree-collectionLabel span:before {
+  display: none;
+}
+
+.is-closed .Tree-collectionLabel span:after {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.Tree-collectionLabel span:before {
+  display: none;
+}
+
+.Tree-collectionLabel span:after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 100%;
+  color: #fff;
+  background-image: url(../img/arrow.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  transition: -webkit-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.Pen-handle {
+  display: none !important;
+}
+
+.Pen-preview {
+  height: 100vh !important;
 }
 
 .Status-dot {
+  position: absolute;
+  right: 12px;
+  height: 6px;
+  width: 6px;
   border: 3px solid transparent;
-  margin: 3px;
-  width: initial;
-  height: initial;
+  background-color: transparent;
 }
 
-a, a:hover {
-  color: #0073af;
-}
-
-.Browser-tab.is-active a {
-  border-bottom-color: #0073af;
-}
-
-.Browser-panel, .Browser-panel .Code, .Browser-panel .Code pre, .Meta-key, .Browser-isEmptyNote {
-  background: #23241f;
-  color: #f8f8f2;
-}
-
-/*
-
-Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
-
-*/
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  background: #23241f;
-}
-
-.hljs,
-.hljs-tag,
-.hljs-subst {
-  color: #f8f8f2;
-}
-
-.hljs-strong,
-.hljs-emphasis {
-  color: #a8a8a2;
-}
-
-.hljs-bullet,
-.hljs-quote,
-.hljs-number,
-.hljs-regexp,
-.hljs-literal,
-.hljs-link {
-  color: #ae81ff;
-}
-
-.hljs-code,
-.hljs-title,
-.hljs-section,
-.hljs-selector-class {
-  color: #a6e22e;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-name,
-.hljs-attr {
-  color: #f92672;
-}
-
-.hljs-symbol,
-.hljs-attribute {
-  color: #66d9ef;
-}
-
-.hljs-params,
-.hljs-class .hljs-title {
-  color: #f8f8f2;
-}
-
-.hljs-string,
-.hljs-type,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-selector-id,
-.hljs-selector-attr,
-.hljs-selector-pseudo,
-.hljs-addition,
-.hljs-variable,
-.hljs-template-variable {
-  color: #e6db74;
-}
-
-.hljs-comment,
-.hljs-deletion,
-.hljs-meta {
-  color: #75715e;
+.Document-title {
+  margin: 15px 0;
+  font-size: 2em;
+  font-weight: 100;
 }

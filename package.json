@@ -26,7 +26,7 @@
     "gulp-util": "^3.0.8",
     "hoek": "^6.1.2",
     "js-cookie": "^2.2.0",
-    "js-yaml": "^3.12.1",
+    "js-yaml": "^3.13.1",
     "jshint": "^2.10.1",
     "jshint-loader": "^0.8.4",
     "jshint-stylish": "^2.2.1",
